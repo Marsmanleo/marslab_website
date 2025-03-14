@@ -1,0 +1,6 @@
+[submodule "mars-lab"]
+	path = mars-lab
+	url = git@github.com:Marsmanleo/mars-lab.git
+[submodule "marslab-next"]
+	path = marslab-next
+	url = git@github.com:Marsmanleo/marslab-next.git
