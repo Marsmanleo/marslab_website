@@ -1,0 +1,27 @@
+FROM php:8.2-apache
+
+# 安装必要的PHP扩展
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    && docker-php-ext-install zip pdo pdo_mysql mysqli
+
+# 启用Apache模块
+RUN a2enmod rewrite
+
+# 设置工作目录
+WORKDIR /var/www/html
+
+# 设置Apache配置
+COPY apache-laravel.conf /etc/apache2/sites-available/000-default.conf
+
+# 设置权限
+RUN chown -R www-data:www-data /var/www/html
+
+# 暴露端口
+EXPOSE 80
+
+# 启动Apache
+CMD ["apache2-foreground"] 
